@@ -14,16 +14,135 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      blood_requests: {
+        Row: {
+          blood_group: Database["public"]["Enums"]["blood_group"]
+          contact_phone: string
+          created_at: string
+          created_by: string
+          hospital: string
+          id: string
+          needed_by: string | null
+          notes: string | null
+          patient_name: string
+          status: Database["public"]["Enums"]["request_status"]
+          units_needed: number
+          updated_at: string
+          urgency: Database["public"]["Enums"]["urgency_level"]
+        }
+        Insert: {
+          blood_group: Database["public"]["Enums"]["blood_group"]
+          contact_phone: string
+          created_at?: string
+          created_by: string
+          hospital: string
+          id?: string
+          needed_by?: string | null
+          notes?: string | null
+          patient_name: string
+          status?: Database["public"]["Enums"]["request_status"]
+          units_needed?: number
+          updated_at?: string
+          urgency?: Database["public"]["Enums"]["urgency_level"]
+        }
+        Update: {
+          blood_group?: Database["public"]["Enums"]["blood_group"]
+          contact_phone?: string
+          created_at?: string
+          created_by?: string
+          hospital?: string
+          id?: string
+          needed_by?: string | null
+          notes?: string | null
+          patient_name?: string
+          status?: Database["public"]["Enums"]["request_status"]
+          units_needed?: number
+          updated_at?: string
+          urgency?: Database["public"]["Enums"]["urgency_level"]
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          bio: string | null
+          blood_group: Database["public"]["Enums"]["blood_group"] | null
+          created_at: string
+          department: string | null
+          full_name: string
+          id: string
+          is_available_to_donate: boolean
+          last_donation_date: string | null
+          phone: string | null
+          student_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          bio?: string | null
+          blood_group?: Database["public"]["Enums"]["blood_group"] | null
+          created_at?: string
+          department?: string | null
+          full_name: string
+          id: string
+          is_available_to_donate?: boolean
+          last_donation_date?: string | null
+          phone?: string | null
+          student_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          bio?: string | null
+          blood_group?: Database["public"]["Enums"]["blood_group"] | null
+          created_at?: string
+          department?: string | null
+          full_name?: string
+          id?: string
+          is_available_to_donate?: boolean
+          last_donation_date?: string | null
+          phone?: string | null
+          student_id?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "donor"
+      blood_group: "A+" | "A-" | "B+" | "B-" | "AB+" | "AB-" | "O+" | "O-"
+      request_status: "open" | "fulfilled" | "closed"
+      urgency_level: "normal" | "urgent" | "critical"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +269,11 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "donor"],
+      blood_group: ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"],
+      request_status: ["open", "fulfilled", "closed"],
+      urgency_level: ["normal", "urgent", "critical"],
+    },
   },
 } as const
