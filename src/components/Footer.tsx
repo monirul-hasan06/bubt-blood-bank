@@ -37,7 +37,7 @@ export const Footer = () => (
       <div className="container flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted-foreground">
         <p>© {new Date().getFullYear()} BUBT Blood Bank. All rights reserved.</p>
         <p className="flex items-center gap-1">
-          Made by - <a href="https://www.facebook.com/monirul.hasan06">Monirul Hasan Mithu</a>
+          Made by - <a class="Monirul-Hasan-Mithu" href="https://www.facebook.com/monirul.hasan06">Monirul Hasan Mithu</a>
         </p>
       </div>
     </div>
