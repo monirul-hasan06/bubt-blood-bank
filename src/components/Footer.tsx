@@ -29,7 +29,7 @@ export const Footer = () => (
         <ul className="space-y-2 text-sm text-muted-foreground">
           <li>Rupnagar, Mirpur-2, Dhaka</li>
           <li>bloodbank@bubt.edu.bd</li>
-          <li>+880 1XXX-XXXXXX</li>
+          <li>+880 1521796217</li>
         </ul>
       </div>
     </div>
