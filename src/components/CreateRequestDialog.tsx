@@ -52,8 +52,13 @@ export const CreateRequestDialog = ({ open, onOpenChange, onCreated }: Props) =>
     }
     setLoading(true);
     const { error } = await supabase.from("blood_requests").insert({
-      ...result.data,
-      blood_group: result.data.blood_group as any,
+      patient_name: result.data.patient_name,
+      blood_group: result.data.blood_group as "A+" | "A-" | "B+" | "B-" | "AB+" | "AB-" | "O+" | "O-",
+      units_needed: result.data.units_needed,
+      hospital: result.data.hospital,
+      contact_phone: result.data.contact_phone,
+      urgency: result.data.urgency,
+      notes: result.data.notes || null,
       created_by: user.id,
     });
     setLoading(false);
