@@ -28,7 +28,7 @@ export const Footer = () => (
         <h4 className="font-semibold mb-3 text-sm">Contact</h4>
         <ul className="space-y-2 text-sm text-muted-foreground">
           <li>Rupnagar, Mirpur-2, Dhaka</li>
-          <li>bloodbank@bubt.edu.bd</li>
+          <li>dev.get.in.touch@gmail.com</li>
           <li>+880 1521796217</li>
         </ul>
       </div>
@@ -37,7 +37,7 @@ export const Footer = () => (
       <div className="container flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted-foreground">
         <p>© {new Date().getFullYear()} BUBT Blood Bank. All rights reserved.</p>
         <p className="flex items-center gap-1">
-          Made with <Heart className="h-3 w-3 fill-primary text-primary" /> by BUBT students
+          Made by - <a href="https://www.facebook.com/monirul.hasan06">Monirul Hasan Mithu</a>
         </p>
       </div>
     </div>
