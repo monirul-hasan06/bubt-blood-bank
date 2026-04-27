@@ -42,8 +42,8 @@ const About = () => (
         <h3 className="font-semibold">Get involved</h3>
         <p className="text-sm text-muted-foreground mt-2">
           Want to volunteer with BUBT Blood Bank Club? Email us at{" "}
-          <a href="mailto:bloodbank@bubt.edu.bd" className="text-primary underline">
-            bloodbank@bubt.edu.bd
+          <a href="mailto: dev.get.in.touch@gmail.com" className="text-primary underline">
+            dev.get.in.touch@gmail.com
           </a>
           .
         </p>
