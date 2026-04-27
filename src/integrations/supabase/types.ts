@@ -104,6 +104,39 @@ export type Database = {
         }
         Relationships: []
       }
+      public_donors: {
+        Row: {
+          blood_group: Database["public"]["Enums"]["blood_group"]
+          created_at: string
+          full_name: string
+          id: string
+          is_visible: boolean
+          note: string | null
+          phone: string
+          updated_at: string
+        }
+        Insert: {
+          blood_group: Database["public"]["Enums"]["blood_group"]
+          created_at?: string
+          full_name?: string
+          id?: string
+          is_visible?: boolean
+          note?: string | null
+          phone: string
+          updated_at?: string
+        }
+        Update: {
+          blood_group?: Database["public"]["Enums"]["blood_group"]
+          created_at?: string
+          full_name?: string
+          id?: string
+          is_visible?: boolean
+          note?: string | null
+          phone?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
