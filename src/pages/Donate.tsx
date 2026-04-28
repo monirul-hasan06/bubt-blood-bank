@@ -39,7 +39,7 @@ const Support = () => {
             Buy me a <span className="text-gradient">coffee ☕</span>
           </h1>
           <p className="mt-4 text-muted-foreground max-w-md mx-auto">
-            Hi! I'm the student dev keeping BUBT Blood Bank free & running.
+            Hi! We are the student dev keeping BUBT Blood Bank free & running.
             Your support covers hosting, domain, and late-night code sessions. 🩸
           </p>
         </div>
