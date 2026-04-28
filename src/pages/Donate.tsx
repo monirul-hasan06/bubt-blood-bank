@@ -69,7 +69,7 @@ const Donate = () => {
                 {copied ? "Copied!" : "Copy bKash number"}
               </Button>
               <p className="text-xs text-muted-foreground text-center">
-                This is a personal account — bKash does not charge the sender on Send Money.
+                This is a personal account — if you want to gift a coffee to the developer you can send money here.
               </p>
             </div>
           </CardContent>
