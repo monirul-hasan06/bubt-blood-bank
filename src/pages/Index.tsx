@@ -68,15 +68,6 @@ const Index = () => (
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary-deep/40 to-transparent pointer-events-none" />
           </div>
-          <div className="absolute -bottom-6 -left-6 bg-card-gradient border border-border rounded-2xl p-4 shadow-elegant flex items-center gap-3 hidden sm:flex">
-            <div className="grid h-12 w-12 place-items-center rounded-xl bg-success/10">
-              <Users className="h-6 w-6 text-success" />
-            </div>
-            <div>
-              <div className="text-sm font-semibold">350+ donors</div>
-              <div className="text-xs text-muted-foreground">ready to help</div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
