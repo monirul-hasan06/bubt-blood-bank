@@ -54,14 +54,6 @@ const Index = () => (
               </Link>
             </Button>
           </div>
-          <div className="mt-12 grid grid-cols-4 gap-4 max-w-lg">
-            {stats.map((s) => (
-              <div key={s.label}>
-                <div className="text-2xl font-bold text-primary">{s.value}</div>
-                <div className="text-xs text-muted-foreground mt-1">{s.label}</div>
-              </div>
-            ))}
-          </div>
         </div>
 
         <div className="relative animate-fade-up" style={{ animationDelay: "0.1s" }}>
