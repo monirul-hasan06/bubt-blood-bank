@@ -61,7 +61,7 @@ const Donate = () => {
                   <li>Open your <strong>bKash</strong> app</li>
                   <li>Tap <strong>Send Money</strong></li>
                   <li>Enter <strong>{BKASH_NUMBER}</strong></li>
-                  <li>Enter any amount — every taka helps ❤️</li>
+                  <li>Enter any amount — every taka helps!</li>
                 </ol>
               </div>
               <Button variant="hero" size="lg" className="w-full" onClick={copy}>
