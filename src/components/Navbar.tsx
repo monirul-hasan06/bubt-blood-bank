@@ -1,15 +1,17 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { Droplet, Heart, LogOut, Menu, ShieldCheck, X } from "lucide-react";
+import { Droplet, Heart, Home, LogOut, Menu, ShieldCheck, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { PWAInstallButton } from "@/components/PWAInstallButton";
 
 const links = [
+  { to: "/", label: "Home", icon: Home },
   { to: "/donors", label: "Find Donors" },
   { to: "/requests", label: "Blood Requests" },
-  { to: "/donate", label: "Donate" },
+  { to: "/donate", label: "Support", icon: Heart },
   { to: "/about", label: "About" },
 ];
 
@@ -30,23 +32,27 @@ export const Navbar = () => {
           <span className="grid h-9 w-9 place-items-center rounded-xl bg-hero-gradient shadow-md">
             <Droplet className="h-5 w-5 fill-primary-foreground text-primary-foreground" />
           </span>
-          <span>BUBT <span className="text-gradient">Blood Bank</span></span>
+          <span className="text-foreground">BUBT <span className="text-gradient">Blood Bank</span></span>
         </Link>
 
         <div className="hidden md:flex items-center gap-1">
-          {links.map((l) => (
-            <NavLink key={l.to} to={l.to}
-              className={({ isActive }) => cn(
-                "px-4 py-2 rounded-lg text-sm font-medium transition-base inline-flex items-center gap-1.5",
-                isActive ? "bg-accent text-accent-foreground" : "text-muted-foreground hover:text-foreground hover:bg-muted"
-              )}>
-              {l.to === "/donate" && <Heart className="h-3.5 w-3.5 fill-primary text-primary" />}
-              {l.label}
-            </NavLink>
-          ))}
+          {links.map((l) => {
+            const Icon = l.icon;
+            return (
+              <NavLink key={l.to} to={l.to} end={l.to === "/"}
+                className={({ isActive }) => cn(
+                  "px-3 py-2 rounded-lg text-sm font-medium transition-base inline-flex items-center gap-1.5",
+                  isActive ? "bg-accent text-accent-foreground" : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                )}>
+                {Icon && <Icon className={cn("h-3.5 w-3.5", l.to === "/donate" && "fill-primary text-primary")} />}
+                {l.label}
+              </NavLink>
+            );
+          })}
         </div>
 
         <div className="hidden md:flex items-center gap-2">
+          <PWAInstallButton showLabel={false} />
           <ThemeToggle />
           {user ? (
             <>
@@ -69,8 +75,9 @@ export const Navbar = () => {
         </div>
 
         <div className="md:hidden flex items-center gap-1">
+          <PWAInstallButton showLabel={false} variant="ghost" />
           <ThemeToggle />
-          <button className="p-2 rounded-lg hover:bg-muted" onClick={() => setOpen((o) => !o)} aria-label="Toggle menu">
+          <button className="p-2 rounded-lg hover:bg-muted text-foreground" onClick={() => setOpen((o) => !o)} aria-label="Toggle menu">
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
@@ -79,15 +86,19 @@ export const Navbar = () => {
       {open && (
         <div className="md:hidden border-t border-border bg-background">
           <div className="container py-4 flex flex-col gap-1">
-            {links.map((l) => (
-              <NavLink key={l.to} to={l.to} onClick={() => setOpen(false)}
-                className={({ isActive }) => cn(
-                  "px-4 py-3 rounded-lg text-sm font-medium",
-                  isActive ? "bg-accent text-accent-foreground" : "hover:bg-muted"
-                )}>
-                {l.label}
-              </NavLink>
-            ))}
+            {links.map((l) => {
+              const Icon = l.icon;
+              return (
+                <NavLink key={l.to} to={l.to} end={l.to === "/"} onClick={() => setOpen(false)}
+                  className={({ isActive }) => cn(
+                    "px-4 py-3 rounded-lg text-sm font-medium inline-flex items-center gap-2",
+                    isActive ? "bg-accent text-accent-foreground" : "text-foreground hover:bg-muted"
+                  )}>
+                  {Icon && <Icon className="h-4 w-4" />}
+                  {l.label}
+                </NavLink>
+              );
+            })}
             <div className="border-t border-border pt-3 mt-2 flex flex-col gap-2">
               {user ? (
                 <>
