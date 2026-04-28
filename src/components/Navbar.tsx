@@ -8,10 +8,10 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { PWAInstallButton } from "@/components/PWAInstallButton";
 
 const links = [
-  { to: "/", label: "Home", icon: Home },
+  { to: "/", label: "Home" },
   { to: "/donors", label: "Find Donors" },
   { to: "/requests", label: "Blood Requests" },
-  { to: "/donate", label: "Support", icon: Heart },
+  { to: "/donate", label: "Support" },
   { to: "/about", label: "About" },
 ];
 
