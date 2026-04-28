@@ -36,7 +36,7 @@ const Support = () => {
             <Coffee className="h-8 w-8 text-primary-foreground" />
           </div>
           <h1 className="text-3xl sm:text-4xl font-bold">
-            Buy me a <span className="text-gradient">coffee ☕</span>
+            Buy us a <span className="text-gradient">coffee ☕</span>
           </h1>
           <p className="mt-4 text-muted-foreground max-w-md mx-auto">
             Hi! We are the student dev keeping BUBT Blood Bank free & running.
