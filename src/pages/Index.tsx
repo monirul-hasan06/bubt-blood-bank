@@ -6,13 +6,6 @@ import { BloodGroupBadge } from "@/components/BloodGroupBadge";
 import { BLOOD_GROUPS } from "@/lib/blood";
 import heroImg from "@/assets/hero-bloodbank.jpg";
 
-const stats = [
-  { label: "Active donors", value: "350+" },
-  { label: "Lives helped", value: "1,200+" },
-  { label: "Blood groups", value: "8" },
-  { label: "Avg. response", value: "<2 hrs" },
-];
-
 const features = [
   {
     icon: Search,
