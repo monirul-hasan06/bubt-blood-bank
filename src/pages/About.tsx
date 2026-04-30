@@ -23,6 +23,16 @@ const About = () => (
         </p>
       </div>
 
+      <section className="container py-16 max-w-3xl space-y-8">
+      <div className="prose prose-neutral max-w-none">
+        <h2 className="text-2xl font-bold">Our mission</h2>
+        <p className="text-muted-foreground leading-relaxed">
+          Every year, thousands of patients in Bangladesh face critical blood shortages.
+          BUBT Blood Bank is built by students, for students — and the wider community —
+          to make finding a donor as easy as a few taps on a phone.
+        </p>
+      </div>
+
       <div className="grid sm:grid-cols-2 gap-4">
         {[
           { icon: GraduationCap, title: "Student-powered", desc: "Run by BUBT volunteers from every department." },
