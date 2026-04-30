@@ -15,11 +15,9 @@ const About = () => (
 
     <section className="container py-16 max-w-3xl space-y-8">
       <div className="prose prose-neutral max-w-none">
-        <h2 className="text-2xl font-bold">Our mission</h2>
+        <h2 className="text-2xl font-bold">Disclaimer</h2>
         <p className="text-muted-foreground leading-relaxed">
-          Every year, thousands of patients in Bangladesh face critical blood shortages.
-          BUBT Blood Bank is built by students, for students — and the wider community —
-          to make finding a donor as easy as a few taps on a phone.
+          The information provided on this website is for general informational purposes only. Verification: You must verify the blood group and compatibility before donating or receiving blood. Liability: The website owner and its affiliates shall not be held responsible for any incorrect information or misinformation provided here. Use this information only if you agree to these terms; otherwise, please refrain from using this site. Professional Advice: Always consult a qualified physician or an authorized blood bank before making any decisions regarding blood donation or collection. Assumption of Risk: We do not accept any liability for any loss or damage resulting from the use of this website.
         </p>
       </div>
 
