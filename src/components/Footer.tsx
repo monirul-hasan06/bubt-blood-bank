@@ -32,11 +32,21 @@ export const Footer = () => (
           <li>+880 1521796217</li>
         </ul>
       </div>
+      <div>
+        <h4 className="font-semibold mb-3 text-sm">Disclaimer</h4>
+        <ul className="space-y-2 text-sm text-muted-foreground">
+          <li>The information provided on this website is for general informational purposes only.</li>
+          <li>Verification: You must verify the blood group and compatibility before donating or receiving blood.</li>
+          <li>Liability: The website owner and its affiliates shall not be held responsible for any incorrect information or misinformation provided here. Use this information only if you agree to these terms; otherwise, please refrain from using this site.</li>
+          <li>Professional Advice: Always consult a qualified physician or an authorized blood bank before making any decisions regarding blood donation or collection.</li>
+          <li>Assumption of Risk: We do not accept any liability for any loss or damage resulting from the use of this website.</li>
+        </ul>
+      </div>
     </div>
     <div className="border-t border-border py-6">
       <div className="container flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted-foreground">
         <p>© {new Date().getFullYear()} BUBT Blood Bank. All rights reserved.</p>
-       <p className="flex items-center gap-1">
+      <p className="flex items-center gap-1">
   Made by - <a href="https://www.facebook.com/monirul.hasan06" style={{ color: 'green' }}>Monirul Hasan Mithu</a>
 </p>
       </div>
