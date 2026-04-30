@@ -121,7 +121,7 @@ const Support = () => {
 
             {/* Footer line */}
             <div className="text-center text-xs text-muted-foreground flex items-center justify-center gap-1.5">
-              <Heart className="h-3.5 w-3.5 fill-primary text-primary" />
+              <className="h-3.5 w-3.5 fill-primary text-primary" />
               Every taka keeps the platform alive — thank you!
             </div>
           </CardContent>
