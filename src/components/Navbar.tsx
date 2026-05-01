@@ -23,6 +23,8 @@ export const Navbar = () => {
   const { user, isAdmin, signOut } = useAuth();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  const supportVisible = useSiteSetting<boolean>("support_button_visible", true);
+  const links = baseLinks.filter((l) => l.to !== "/donate" || supportVisible || isAdmin);
 
   const handleSignOut = async () => {
     await signOut();
