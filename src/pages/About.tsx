@@ -48,7 +48,38 @@ const About = () => (
           .
         </p>
       </div>
+
+      {/* Disclaimer */}
+      <div className="mt-8 rounded-2xl border border-border bg-card-gradient p-6 shadow-sm">
+        <div className="flex items-center gap-3 mb-4">
+          <span className="grid h-10 w-10 place-items-center rounded-xl bg-accent text-primary">
+            <AlertTriangle className="h-5 w-5" />
+          </span>
+          <h2 className="text-xl font-bold">Disclaimer</h2>
+        </div>
+        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+          The information provided on this website is for general informational purposes only.
+          Please read the points below carefully before using this service.
+        </p>
+        <ul className="space-y-3 text-sm">
+          {[
+            { t: "Verification", d: "You must verify the blood group and compatibility before donating or receiving blood." },
+            { t: "Liability", d: "The website owner and its affiliates shall not be held responsible for any incorrect information or misinformation provided here." },
+            { t: "Terms of use", d: "Use this information only if you agree to these terms; otherwise, please refrain from using this site." },
+            { t: "Professional advice", d: "Always consult a qualified physician or an authorized blood bank before making any decisions regarding blood donation or collection." },
+            { t: "Assumption of risk", d: "We do not accept any liability for any loss or damage resulting from the use of this website." },
+          ].map((item) => (
+            <li key={item.t} className="flex gap-3">
+              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+              <p className="text-muted-foreground leading-relaxed">
+                <span className="font-semibold text-foreground">{item.t}:</span> {item.d}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
+
   </Layout>
 );
 
