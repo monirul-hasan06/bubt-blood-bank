@@ -51,18 +51,36 @@ const AdminDashboard = () => {
 
   const load = async () => {
     setLoading(true);
-    const [p, r, d] = await Promise.all([
+    const [p, r, d, s] = await Promise.all([
       supabase.from("profiles").select("*").order("full_name"),
       supabase.from("blood_requests").select("*").order("created_at", { ascending: false }),
       supabase.from("public_donors").select("*").order("full_name"),
+      supabase.from("site_settings").select("value").eq("key", "support_button_visible").maybeSingle(),
     ]);
     if (p.data) setProfiles(p.data as Profile[]);
     if (r.data) setRequests(r.data as BloodRequest[]);
     if (d.data) setPublicDonors(d.data as PublicDonor[]);
+    if (s.data) setSupportVisible(Boolean(s.data.value));
     setLoading(false);
   };
 
   useEffect(() => { void load(); }, []);
+
+  const toggleSupport = async (next: boolean) => {
+    setSavingSetting(true);
+    const prev = supportVisible;
+    setSupportVisible(next);
+    const { error } = await supabase
+      .from("site_settings")
+      .upsert({ key: "support_button_visible", value: next as any }, { onConflict: "key" });
+    setSavingSetting(false);
+    if (error) {
+      setSupportVisible(prev);
+      toast.error(error.message);
+    } else {
+      toast.success(next ? "Support button is now visible" : "Support button hidden");
+    }
+  };
 
   const runDelete = async () => {
     if (!confirmDelete) return;
