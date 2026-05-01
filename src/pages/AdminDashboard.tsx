@@ -17,7 +17,8 @@ import {
 } from "@/components/ui/dialog";
 import { BloodGroupBadge } from "@/components/BloodGroupBadge";
 import { BLOOD_GROUPS } from "@/lib/blood";
-import { Loader2, Pencil, Trash2, ShieldCheck } from "lucide-react";
+import { Loader2, Pencil, Trash2, ShieldCheck, Coffee } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
 import { toast } from "sonner";
 
 type Profile = {
