@@ -1,5 +1,5 @@
 import { Layout } from "@/components/Layout";
-import { Droplet, GraduationCap, HeartHandshake, ShieldCheck } from "lucide-react";
+import { AlertTriangle, Droplet, GraduationCap, HeartHandshake, ShieldCheck } from "lucide-react";
 
 const About = () => (
   <Layout>
@@ -9,10 +9,6 @@ const About = () => (
         <p className="mt-4 text-lg text-muted-foreground">
           A student-led initiative at Bangladesh University of Business and Technology
           dedicated to bridging the gap between blood donors and patients in need.
-          <p className="mt-4 text-lg text-muted-foreground">
-          <h2 className="text-2xl font-bold">Disclaimer :</h2>
-          The information provided on this website is for general informational purposes only. Verification: You must verify the blood group and compatibility before donating or receiving blood. Liability: The website owner and its affiliates shall not be held responsible for any incorrect information or misinformation provided here. Use this information only if you agree to these terms; otherwise, please refrain from using this site. Professional Advice: Always consult a qualified physician or an authorized blood bank before making any decisions regarding blood donation or collection. Assumption of Risk: We do not accept any liability for any loss or damage resulting from the use of this website.
-          </p>
         </p>
       </div>
     </section>
