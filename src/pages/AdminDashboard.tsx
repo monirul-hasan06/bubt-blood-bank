@@ -140,6 +140,34 @@ const AdminDashboard = () => {
           </div>
         </div>
 
+        {/* Site settings */}
+        <Card className="mb-6">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base">Site settings</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center justify-between gap-4 rounded-lg border border-border bg-muted/30 p-4">
+              <div className="flex items-start gap-3">
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-accent text-accent-foreground">
+                  <Coffee className="h-4 w-4" />
+                </span>
+                <div>
+                  <div className="font-medium text-sm">Show "Support" button</div>
+                  <p className="text-xs text-muted-foreground mt-0.5">
+                    Toggle visibility of the Support / Buy us a coffee link in the navbar for all visitors.
+                  </p>
+                </div>
+              </div>
+              <Switch
+                checked={supportVisible}
+                disabled={savingSetting}
+                onCheckedChange={toggleSupport}
+                aria-label="Toggle support button visibility"
+              />
+            </div>
+          </CardContent>
+        </Card>
+
         {loading ? (
           <div className="grid place-items-center py-16">
             <Loader2 className="h-8 w-8 animate-spin text-primary" />
