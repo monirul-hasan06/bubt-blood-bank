@@ -41,6 +41,8 @@ const AdminDashboard = () => {
   const [requests, setRequests] = useState<BloodRequest[]>([]);
   const [publicDonors, setPublicDonors] = useState<PublicDonor[]>([]);
   const [loading, setLoading] = useState(true);
+  const [supportVisible, setSupportVisible] = useState(true);
+  const [savingSetting, setSavingSetting] = useState(false);
 
   const [editProfile, setEditProfile] = useState<Profile | null>(null);
   const [editRequest, setEditRequest] = useState<BloodRequest | null>(null);
