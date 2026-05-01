@@ -17,7 +17,8 @@ import {
 } from "@/components/ui/dialog";
 import { BloodGroupBadge } from "@/components/BloodGroupBadge";
 import { BLOOD_GROUPS } from "@/lib/blood";
-import { Loader2, Pencil, Trash2, ShieldCheck } from "lucide-react";
+import { Loader2, Pencil, Trash2, ShieldCheck, Coffee } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
 import { toast } from "sonner";
 
 type Profile = {
@@ -40,6 +41,8 @@ const AdminDashboard = () => {
   const [requests, setRequests] = useState<BloodRequest[]>([]);
   const [publicDonors, setPublicDonors] = useState<PublicDonor[]>([]);
   const [loading, setLoading] = useState(true);
+  const [supportVisible, setSupportVisible] = useState(true);
+  const [savingSetting, setSavingSetting] = useState(false);
 
   const [editProfile, setEditProfile] = useState<Profile | null>(null);
   const [editRequest, setEditRequest] = useState<BloodRequest | null>(null);
@@ -48,18 +51,36 @@ const AdminDashboard = () => {
 
   const load = async () => {
     setLoading(true);
-    const [p, r, d] = await Promise.all([
+    const [p, r, d, s] = await Promise.all([
       supabase.from("profiles").select("*").order("full_name"),
       supabase.from("blood_requests").select("*").order("created_at", { ascending: false }),
       supabase.from("public_donors").select("*").order("full_name"),
+      supabase.from("site_settings").select("value").eq("key", "support_button_visible").maybeSingle(),
     ]);
     if (p.data) setProfiles(p.data as Profile[]);
     if (r.data) setRequests(r.data as BloodRequest[]);
     if (d.data) setPublicDonors(d.data as PublicDonor[]);
+    if (s.data) setSupportVisible(Boolean(s.data.value));
     setLoading(false);
   };
 
   useEffect(() => { void load(); }, []);
+
+  const toggleSupport = async (next: boolean) => {
+    setSavingSetting(true);
+    const prev = supportVisible;
+    setSupportVisible(next);
+    const { error } = await supabase
+      .from("site_settings")
+      .upsert({ key: "support_button_visible", value: next as any }, { onConflict: "key" });
+    setSavingSetting(false);
+    if (error) {
+      setSupportVisible(prev);
+      toast.error(error.message);
+    } else {
+      toast.success(next ? "Support button is now visible" : "Support button hidden");
+    }
+  };
 
   const runDelete = async () => {
     if (!confirmDelete) return;
@@ -118,6 +139,34 @@ const AdminDashboard = () => {
             <p className="text-sm text-muted-foreground">Moderate users, requests, and community donors.</p>
           </div>
         </div>
+
+        {/* Site settings */}
+        <Card className="mb-6">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base">Site settings</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center justify-between gap-4 rounded-lg border border-border bg-muted/30 p-4">
+              <div className="flex items-start gap-3">
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-accent text-accent-foreground">
+                  <Coffee className="h-4 w-4" />
+                </span>
+                <div>
+                  <div className="font-medium text-sm">Show "Support" button</div>
+                  <p className="text-xs text-muted-foreground mt-0.5">
+                    Toggle visibility of the Support / Buy us a coffee link in the navbar for all visitors.
+                  </p>
+                </div>
+              </div>
+              <Switch
+                checked={supportVisible}
+                disabled={savingSetting}
+                onCheckedChange={toggleSupport}
+                aria-label="Toggle support button visibility"
+              />
+            </div>
+          </CardContent>
+        </Card>
 
         {loading ? (
           <div className="grid place-items-center py-16">

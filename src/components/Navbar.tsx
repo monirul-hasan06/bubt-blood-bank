@@ -6,12 +6,16 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { PWAInstallButton } from "@/components/PWAInstallButton";
+import { useSiteSetting } from "@/hooks/useSiteSettings";
+import type { LucideIcon } from "lucide-react";
 
-const links = [
-  { to: "/", label: "Home" },
+type NavItem = { to: string; label: string; icon?: LucideIcon };
+
+const baseLinks: NavItem[] = [
+  { to: "/", label: "Home", icon: Home },
   { to: "/donors", label: "Find Donors" },
   { to: "/requests", label: "Blood Requests" },
-  { to: "/donate", label: "Support" },
+  { to: "/donate", label: "Support", icon: Heart },
   { to: "/about", label: "About" },
 ];
 
@@ -19,6 +23,8 @@ export const Navbar = () => {
   const { user, isAdmin, signOut } = useAuth();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  const supportVisible = useSiteSetting<boolean>("support_button_visible", true);
+  const links = baseLinks.filter((l) => l.to !== "/donate" || supportVisible || isAdmin);
 
   const handleSignOut = async () => {
     await signOut();
