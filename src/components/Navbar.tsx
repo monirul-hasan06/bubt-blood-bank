@@ -12,10 +12,10 @@ import type { LucideIcon } from "lucide-react";
 type NavItem = { to: string; label: string; icon?: LucideIcon };
 
 const baseLinks: NavItem[] = [
-  { to: "/", label: "Home", icon: Home },
+  { to: "/", label: "Home" },
   { to: "/donors", label: "Find Donors" },
   { to: "/requests", label: "Blood Requests" },
-  { to: "/donate", label: "Support", icon: Heart },
+  { to: "/donate", label: "Support" },
   { to: "/about", label: "About" },
 ];
 
