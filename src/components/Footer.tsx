@@ -47,7 +47,15 @@ export const Footer = () => (
       <div className="container flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted-foreground">
         <p>© {new Date().getFullYear()} BUBT Blood Bank. All rights reserved.</p>
       <p className="flex items-center gap-1">
-  Made by - <a href="https://www.facebook.com/monirul.hasan06" style={{ color: 'green' }}>Monirul Hasan Mithu</a>
+  Built & maintained by{" "}
+  <a
+    href="https://www.facebook.com/share/17ji36osLq/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-primary font-semibold hover:underline"
+  >
+    TechCanvix
+  </a>
 </p>
       </div>
     </div>
