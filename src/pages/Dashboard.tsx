@@ -10,7 +10,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { BloodGroupBadge } from "@/components/BloodGroupBadge";
-import { Loader2, Save, CheckCircle2 } from "lucide-react";
+import { DonationHistorySection } from "@/components/DonationHistorySection";
+import { Loader2, Save, CheckCircle2, MapPin, Facebook, MessageCircle } from "lucide-react";
 import { toast } from "sonner";
 import { BLOOD_GROUPS, DEPARTMENTS, isEligible, daysSince } from "@/lib/blood";
 
@@ -24,6 +25,9 @@ interface Profile {
   last_donation_date: string | null;
   is_available_to_donate: boolean;
   bio: string | null;
+  location: string | null;
+  facebook_url: string | null;
+  whatsapp_number: string | null;
 }
 
 const Dashboard = () => {
@@ -61,6 +65,9 @@ const Dashboard = () => {
         last_donation_date: String(fd.get("last_donation_date") || "") || null,
         is_available_to_donate: profile.is_available_to_donate,
         bio: String(fd.get("bio") || "").slice(0, 500) || null,
+        location: String(fd.get("location") || "").slice(0, 150) || null,
+        facebook_url: String(fd.get("facebook_url") || "").slice(0, 250) || null,
+        whatsapp_number: String(fd.get("whatsapp_number") || "").slice(0, 20) || null,
       })
       .eq("id", user.id);
     setSaving(false);
@@ -146,6 +153,20 @@ const Dashboard = () => {
                 </div>
               </div>
               <div className="space-y-2">
+                <Label htmlFor="location" className="flex items-center gap-1.5"><MapPin className="h-3.5 w-3.5" /> Current location</Label>
+                <Input id="location" name="location" placeholder="Area, city, district" defaultValue={profile.location ?? ""} maxLength={150} />
+              </div>
+              <div className="grid sm:grid-cols-2 gap-3">
+                <div className="space-y-2">
+                  <Label htmlFor="facebook_url" className="flex items-center gap-1.5"><Facebook className="h-3.5 w-3.5" /> Facebook profile</Label>
+                  <Input id="facebook_url" name="facebook_url" type="url" placeholder="https://facebook.com/yourprofile" defaultValue={profile.facebook_url ?? ""} maxLength={250} />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="whatsapp_number" className="flex items-center gap-1.5"><MessageCircle className="h-3.5 w-3.5" /> WhatsApp number</Label>
+                  <Input id="whatsapp_number" name="whatsapp_number" type="tel" placeholder="+8801..." defaultValue={profile.whatsapp_number ?? ""} maxLength={20} />
+                </div>
+              </div>
+              <div className="space-y-2">
                 <Label htmlFor="bio">Short bio (optional)</Label>
                 <Textarea id="bio" name="bio" defaultValue={profile.bio ?? ""} maxLength={500} rows={3} />
               </div>
@@ -201,6 +222,10 @@ const Dashboard = () => {
               )}
             </CardContent>
           </Card>
+        </div>
+
+        <div className="lg:col-span-3">
+          <DonationHistorySection userId={user!.id} canEdit />
         </div>
       </section>
     </Layout>

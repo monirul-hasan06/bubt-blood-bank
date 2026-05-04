@@ -8,16 +8,21 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { Loader2, Phone, Search, GraduationCap } from "lucide-react";
+import { Loader2, Phone, Search, GraduationCap, MapPin, Facebook, MessageCircle, Droplet } from "lucide-react";
 
 interface DonorEntry {
   id: string;
+  user_id?: string;
   full_name: string;
   blood_group: string | null;
   department: string | null;
   phone: string | null;
   last_donation_date: string | null;
   bio: string | null;
+  location?: string | null;
+  facebook_url?: string | null;
+  whatsapp_number?: string | null;
+  donation_count?: number;
   source: "registered" | "community";
 }
 
@@ -32,7 +37,7 @@ const Donors = () => {
       const [profilesRes, publicRes] = await Promise.all([
         supabase
           .from("profiles")
-          .select("id, full_name, blood_group, department, phone, last_donation_date, bio")
+          .select("id, full_name, blood_group, department, phone, last_donation_date, bio, location, facebook_url, whatsapp_number")
           .eq("is_available_to_donate", true)
           .order("created_at", { ascending: false }),
         supabase
@@ -42,14 +47,30 @@ const Donors = () => {
           .order("created_at", { ascending: false }),
       ]);
 
-      const registered: DonorEntry[] = (profilesRes.data || []).map((p: any) => ({
+      const profiles = profilesRes.data || [];
+      const userIds = profiles.map((p: any) => p.id);
+      const counts: Record<string, number> = {};
+      if (userIds.length) {
+        const { data: hist } = await supabase
+          .from("donation_history")
+          .select("user_id")
+          .in("user_id", userIds);
+        (hist || []).forEach((h: any) => { counts[h.user_id] = (counts[h.user_id] || 0) + 1; });
+      }
+
+      const registered: DonorEntry[] = profiles.map((p: any) => ({
         id: `r-${p.id}`,
+        user_id: p.id,
         full_name: p.full_name,
         blood_group: p.blood_group,
         department: p.department,
         phone: p.phone,
         last_donation_date: p.last_donation_date,
         bio: p.bio,
+        location: p.location,
+        facebook_url: p.facebook_url,
+        whatsapp_number: p.whatsapp_number,
+        donation_count: counts[p.id] || 0,
         source: "registered",
       }));
 
@@ -144,6 +165,11 @@ const Donors = () => {
                               <GraduationCap className="h-3 w-3" /> {d.department}
                             </p>
                           )}
+                          {d.location && (
+                            <p className="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
+                              <MapPin className="h-3 w-3" /> {d.location}
+                            </p>
+                          )}
                           <div className="mt-2 flex flex-wrap gap-1">
                             {eligible ? (
                               <Badge className="bg-success/10 text-success hover:bg-success/15 border-0">
@@ -154,6 +180,11 @@ const Donors = () => {
                                 {days !== null ? `Donated ${days}d ago` : "Resting"}
                               </Badge>
                             )}
+                            {!!d.donation_count && d.donation_count > 0 && (
+                              <Badge variant="outline" className="text-xs gap-1">
+                                <Droplet className="h-3 w-3 text-primary" /> {d.donation_count}x donated
+                              </Badge>
+                            )}
                             {d.source === "community" && (
                               <Badge variant="outline" className="text-xs">Community</Badge>
                             )}
@@ -161,11 +192,29 @@ const Donors = () => {
                         </div>
                       </div>
                       {d.bio && <p className="mt-3 text-sm text-muted-foreground line-clamp-2">{d.bio}</p>}
-                      {d.phone && (
-                        <Button asChild variant="outline" size="sm" className="w-full mt-4">
-                          <a href={`tel:${d.phone}`}><Phone className="h-4 w-4" /> {d.phone}</a>
-                        </Button>
-                      )}
+                      <div className="mt-4 grid grid-cols-1 gap-2">
+                        {d.phone && (
+                          <Button asChild variant="outline" size="sm">
+                            <a href={`tel:${d.phone}`}><Phone className="h-4 w-4" /> {d.phone}</a>
+                          </Button>
+                        )}
+                        <div className="flex gap-2">
+                          {d.whatsapp_number && (
+                            <Button asChild size="sm" className="flex-1 bg-[#25D366] hover:bg-[#1ebe57] text-white">
+                              <a href={`https://wa.me/${d.whatsapp_number.replace(/[^0-9]/g, "")}`} target="_blank" rel="noopener noreferrer">
+                                <MessageCircle className="h-4 w-4" /> WhatsApp
+                              </a>
+                            </Button>
+                          )}
+                          {d.facebook_url && (
+                            <Button asChild size="sm" variant="outline" className="flex-1">
+                              <a href={d.facebook_url} target="_blank" rel="noopener noreferrer">
+                                <Facebook className="h-4 w-4" /> Facebook
+                              </a>
+                            </Button>
+                          )}
+                        </div>
+                      </div>
                     </CardContent>
                   </Card>
                 );
