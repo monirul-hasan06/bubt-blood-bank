@@ -153,6 +153,20 @@ const Dashboard = () => {
                 </div>
               </div>
               <div className="space-y-2">
+                <Label htmlFor="location" className="flex items-center gap-1.5"><MapPin className="h-3.5 w-3.5" /> Current location</Label>
+                <Input id="location" name="location" placeholder="Area, city, district" defaultValue={profile.location ?? ""} maxLength={150} />
+              </div>
+              <div className="grid sm:grid-cols-2 gap-3">
+                <div className="space-y-2">
+                  <Label htmlFor="facebook_url" className="flex items-center gap-1.5"><Facebook className="h-3.5 w-3.5" /> Facebook profile</Label>
+                  <Input id="facebook_url" name="facebook_url" type="url" placeholder="https://facebook.com/yourprofile" defaultValue={profile.facebook_url ?? ""} maxLength={250} />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="whatsapp_number" className="flex items-center gap-1.5"><MessageCircle className="h-3.5 w-3.5" /> WhatsApp number</Label>
+                  <Input id="whatsapp_number" name="whatsapp_number" type="tel" placeholder="+8801..." defaultValue={profile.whatsapp_number ?? ""} maxLength={20} />
+                </div>
+              </div>
+              <div className="space-y-2">
                 <Label htmlFor="bio">Short bio (optional)</Label>
                 <Textarea id="bio" name="bio" defaultValue={profile.bio ?? ""} maxLength={500} rows={3} />
               </div>
