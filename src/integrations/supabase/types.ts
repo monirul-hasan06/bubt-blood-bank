@@ -62,45 +62,87 @@ export type Database = {
         }
         Relationships: []
       }
+      donation_history: {
+        Row: {
+          created_at: string
+          donation_date: string | null
+          hospital: string | null
+          id: string
+          location: string | null
+          notes: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          donation_date?: string | null
+          hospital?: string | null
+          id?: string
+          location?: string | null
+          notes?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          donation_date?: string | null
+          hospital?: string | null
+          id?: string
+          location?: string | null
+          notes?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           bio: string | null
           blood_group: Database["public"]["Enums"]["blood_group"] | null
           created_at: string
           department: string | null
+          facebook_url: string | null
           full_name: string
           id: string
           is_available_to_donate: boolean
           last_donation_date: string | null
+          location: string | null
           phone: string | null
           student_id: string | null
           updated_at: string
+          whatsapp_number: string | null
         }
         Insert: {
           bio?: string | null
           blood_group?: Database["public"]["Enums"]["blood_group"] | null
           created_at?: string
           department?: string | null
+          facebook_url?: string | null
           full_name: string
           id: string
           is_available_to_donate?: boolean
           last_donation_date?: string | null
+          location?: string | null
           phone?: string | null
           student_id?: string | null
           updated_at?: string
+          whatsapp_number?: string | null
         }
         Update: {
           bio?: string | null
           blood_group?: Database["public"]["Enums"]["blood_group"] | null
           created_at?: string
           department?: string | null
+          facebook_url?: string | null
           full_name?: string
           id?: string
           is_available_to_donate?: boolean
           last_donation_date?: string | null
+          location?: string | null
           phone?: string | null
           student_id?: string | null
           updated_at?: string
+          whatsapp_number?: string | null
         }
         Relationships: []
       }
