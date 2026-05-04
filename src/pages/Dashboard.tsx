@@ -223,6 +223,10 @@ const Dashboard = () => {
             </CardContent>
           </Card>
         </div>
+
+        <div className="lg:col-span-3">
+          <DonationHistorySection userId={user!.id} canEdit />
+        </div>
       </section>
     </Layout>
   );
