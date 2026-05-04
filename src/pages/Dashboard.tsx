@@ -65,6 +65,9 @@ const Dashboard = () => {
         last_donation_date: String(fd.get("last_donation_date") || "") || null,
         is_available_to_donate: profile.is_available_to_donate,
         bio: String(fd.get("bio") || "").slice(0, 500) || null,
+        location: String(fd.get("location") || "").slice(0, 150) || null,
+        facebook_url: String(fd.get("facebook_url") || "").slice(0, 250) || null,
+        whatsapp_number: String(fd.get("whatsapp_number") || "").slice(0, 20) || null,
       })
       .eq("id", user.id);
     setSaving(false);
