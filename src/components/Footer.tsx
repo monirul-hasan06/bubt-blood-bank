@@ -25,11 +25,21 @@ export const Footer = () => (
         </ul>
       </div>
       <div>
-        <h4 className="font-semibold mb-3 text-sm">Contact</h4>
+        <h4 className="font-semibold mb-3 text-sm">Connect</h4>
         <ul className="space-y-2 text-sm text-muted-foreground">
           <li>Rupnagar, Mirpur-2, Dhaka</li>
-          <li>dev.get.in.touch@gmail.com</li>
-          <li>+880 1521796217</li>
+          <li>
+            Follow us on{" "}
+            <a
+              href="https://www.facebook.com/share/17ji36osLq/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline font-medium"
+            >
+              TechCanvix
+            </a>
+          </li>
+          <li className="text-xs">Message us on Facebook for services & support.</li>
         </ul>
       </div>
     </div>
