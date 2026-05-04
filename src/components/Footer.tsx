@@ -25,11 +25,21 @@ export const Footer = () => (
         </ul>
       </div>
       <div>
-        <h4 className="font-semibold mb-3 text-sm">Contact</h4>
+        <h4 className="font-semibold mb-3 text-sm">Connect</h4>
         <ul className="space-y-2 text-sm text-muted-foreground">
           <li>Rupnagar, Mirpur-2, Dhaka</li>
-          <li>dev.get.in.touch@gmail.com</li>
-          <li>+880 1521796217</li>
+          <li>
+            Follow us on{" "}
+            <a
+              href="https://www.facebook.com/share/17ji36osLq/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline font-medium"
+            >
+              TechCanvix
+            </a>
+          </li>
+          <li className="text-xs">Message us on Facebook for services & support.</li>
         </ul>
       </div>
     </div>
@@ -37,7 +47,15 @@ export const Footer = () => (
       <div className="container flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted-foreground">
         <p>© {new Date().getFullYear()} BUBT Blood Bank. All rights reserved.</p>
       <p className="flex items-center gap-1">
-  Made by - <a href="https://www.facebook.com/monirul.hasan06" style={{ color: 'green' }}>Monirul Hasan Mithu</a>
+  Built & maintained by{" "}
+  <a
+    href="https://www.facebook.com/share/17ji36osLq/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-primary font-semibold hover:underline"
+  >
+    TechCanvix
+  </a>
 </p>
       </div>
     </div>
