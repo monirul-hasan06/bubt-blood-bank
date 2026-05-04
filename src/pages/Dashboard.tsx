@@ -10,7 +10,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { BloodGroupBadge } from "@/components/BloodGroupBadge";
-import { Loader2, Save, CheckCircle2 } from "lucide-react";
+import { DonationHistorySection } from "@/components/DonationHistorySection";
+import { Loader2, Save, CheckCircle2, MapPin, Facebook, MessageCircle } from "lucide-react";
 import { toast } from "sonner";
 import { BLOOD_GROUPS, DEPARTMENTS, isEligible, daysSince } from "@/lib/blood";
 
@@ -24,6 +25,9 @@ interface Profile {
   last_donation_date: string | null;
   is_available_to_donate: boolean;
   bio: string | null;
+  location: string | null;
+  facebook_url: string | null;
+  whatsapp_number: string | null;
 }
 
 const Dashboard = () => {
