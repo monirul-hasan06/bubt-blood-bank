@@ -165,6 +165,11 @@ const Donors = () => {
                               <GraduationCap className="h-3 w-3" /> {d.department}
                             </p>
                           )}
+                          {d.location && (
+                            <p className="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
+                              <MapPin className="h-3 w-3" /> {d.location}
+                            </p>
+                          )}
                           <div className="mt-2 flex flex-wrap gap-1">
                             {eligible ? (
                               <Badge className="bg-success/10 text-success hover:bg-success/15 border-0">
@@ -175,6 +180,11 @@ const Donors = () => {
                                 {days !== null ? `Donated ${days}d ago` : "Resting"}
                               </Badge>
                             )}
+                            {!!d.donation_count && d.donation_count > 0 && (
+                              <Badge variant="outline" className="text-xs gap-1">
+                                <Droplet className="h-3 w-3 text-primary" /> {d.donation_count}x donated
+                              </Badge>
+                            )}
                             {d.source === "community" && (
                               <Badge variant="outline" className="text-xs">Community</Badge>
                             )}
@@ -182,11 +192,29 @@ const Donors = () => {
                         </div>
                       </div>
                       {d.bio && <p className="mt-3 text-sm text-muted-foreground line-clamp-2">{d.bio}</p>}
-                      {d.phone && (
-                        <Button asChild variant="outline" size="sm" className="w-full mt-4">
-                          <a href={`tel:${d.phone}`}><Phone className="h-4 w-4" /> {d.phone}</a>
-                        </Button>
-                      )}
+                      <div className="mt-4 grid grid-cols-1 gap-2">
+                        {d.phone && (
+                          <Button asChild variant="outline" size="sm">
+                            <a href={`tel:${d.phone}`}><Phone className="h-4 w-4" /> {d.phone}</a>
+                          </Button>
+                        )}
+                        <div className="flex gap-2">
+                          {d.whatsapp_number && (
+                            <Button asChild size="sm" className="flex-1 bg-[#25D366] hover:bg-[#1ebe57] text-white">
+                              <a href={`https://wa.me/${d.whatsapp_number.replace(/[^0-9]/g, "")}`} target="_blank" rel="noopener noreferrer">
+                                <MessageCircle className="h-4 w-4" /> WhatsApp
+                              </a>
+                            </Button>
+                          )}
+                          {d.facebook_url && (
+                            <Button asChild size="sm" variant="outline" className="flex-1">
+                              <a href={d.facebook_url} target="_blank" rel="noopener noreferrer">
+                                <Facebook className="h-4 w-4" /> Facebook
+                              </a>
+                            </Button>
+                          )}
+                        </div>
+                      </div>
                     </CardContent>
                   </Card>
                 );
