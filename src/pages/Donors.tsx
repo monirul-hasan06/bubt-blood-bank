@@ -8,16 +8,21 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { Loader2, Phone, Search, GraduationCap } from "lucide-react";
+import { Loader2, Phone, Search, GraduationCap, MapPin, Facebook, MessageCircle, Droplet } from "lucide-react";
 
 interface DonorEntry {
   id: string;
+  user_id?: string;
   full_name: string;
   blood_group: string | null;
   department: string | null;
   phone: string | null;
   last_donation_date: string | null;
   bio: string | null;
+  location?: string | null;
+  facebook_url?: string | null;
+  whatsapp_number?: string | null;
+  donation_count?: number;
   source: "registered" | "community";
 }
 
