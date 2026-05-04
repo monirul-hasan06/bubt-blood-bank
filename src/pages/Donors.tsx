@@ -37,7 +37,7 @@ const Donors = () => {
       const [profilesRes, publicRes] = await Promise.all([
         supabase
           .from("profiles")
-          .select("id, full_name, blood_group, department, phone, last_donation_date, bio")
+          .select("id, full_name, blood_group, department, phone, last_donation_date, bio, location, facebook_url, whatsapp_number")
           .eq("is_available_to_donate", true)
           .order("created_at", { ascending: false }),
         supabase
@@ -47,14 +47,30 @@ const Donors = () => {
           .order("created_at", { ascending: false }),
       ]);
 
-      const registered: DonorEntry[] = (profilesRes.data || []).map((p: any) => ({
+      const profiles = profilesRes.data || [];
+      const userIds = profiles.map((p: any) => p.id);
+      const counts: Record<string, number> = {};
+      if (userIds.length) {
+        const { data: hist } = await supabase
+          .from("donation_history")
+          .select("user_id")
+          .in("user_id", userIds);
+        (hist || []).forEach((h: any) => { counts[h.user_id] = (counts[h.user_id] || 0) + 1; });
+      }
+
+      const registered: DonorEntry[] = profiles.map((p: any) => ({
         id: `r-${p.id}`,
+        user_id: p.id,
         full_name: p.full_name,
         blood_group: p.blood_group,
         department: p.department,
         phone: p.phone,
         last_donation_date: p.last_donation_date,
         bio: p.bio,
+        location: p.location,
+        facebook_url: p.facebook_url,
+        whatsapp_number: p.whatsapp_number,
+        donation_count: counts[p.id] || 0,
         source: "registered",
       }));
 
