@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { Loader2, Phone, Search, GraduationCap, MapPin, Facebook, MessageCircle, Droplet } from "lucide-react";
+import { Loader2, Phone, Search, GraduationCap, MapPin, Facebook, MessageCircle, Droplet, Info } from "lucide-react";
 
 interface DonorEntry {
   id: string;
@@ -189,6 +189,12 @@ const Donors = () => {
                               <Badge variant="outline" className="text-xs">Community</Badge>
                             )}
                           </div>
+                          {d.source === "community" && (
+                            <p className="mt-1.5 text-[11px] text-muted-foreground flex items-center gap-1">
+                              <Info className="h-3 w-3" />
+                              Phone number & info collected from a Facebook group
+                            </p>
+                          )}
                         </div>
                       </div>
                       {d.bio && <p className="mt-3 text-sm text-muted-foreground line-clamp-2">{d.bio}</p>}
